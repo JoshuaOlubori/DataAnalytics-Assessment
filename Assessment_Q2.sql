@@ -37,7 +37,7 @@ CategorizedCustomers AS (
 SELECT
     frequency_category,
     COUNT(owner_id) AS customer_count,
-    AVG(avg_monthly_transactions) AS avg_transactions_per_month
+    ROUND(AVG(avg_monthly_transactions), 1) AS avg_transactions_per_month -- Rounding to 1 decimal place to match expected output
 FROM
     CategorizedCustomers
 GROUP BY

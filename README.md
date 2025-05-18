@@ -5,7 +5,7 @@ I joined the users_customuser, savings_savingsaccount, and plans_plan tables, li
 
 
 
-Next, I grouped the results by user ID and name to aggregate their financial activity. I obtained the full name using the `CONCAT` function to match the expected output. Within this grouping, I calculated the number of distinct regular savings plans (savings_count) and investment plans (investment_count) that received funded deposits from each user using conditional COUNT(DISTINCT pp.id). At the same time, I summed their confirmed deposit amounts (total_deposits), dividing by 100 to convert from kobo to naira.
+Next, I grouped the results by user ID and name to aggregate their financial activity. I obtained the full name using the `CONCAT` function to match the expected output. Within this grouping, I calculated the number of distinct regular savings plans (savings_count) and investment plans (investment_count) that received funded deposits from each user using conditional COUNT(DISTINCT pp.id). At the same time, I summed their confirmed deposit amounts (total_deposits), dividing by 100 to convert from kobo to naira. I rounded this figure to 2 decimal places to ensure the query result match the expected output.
 
 
 

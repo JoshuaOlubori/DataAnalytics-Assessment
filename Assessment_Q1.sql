@@ -3,7 +3,7 @@ SELECT
     CONCAT(uc.first_name,' ', uc.last_name) AS name,
     COUNT(DISTINCT CASE WHEN pp.is_regular_savings = 1 THEN pp.id END) AS savings_count,
     COUNT(DISTINCT CASE WHEN pp.is_a_fund = 1 THEN pp.id END) AS investment_count,
-    SUM(ss.confirmed_amount) / 100 AS total_deposits -- Converting amount from kobo to naira
+    ROUND(SUM(ss.confirmed_amount) / 100, 2) AS total_deposits -- Converting amount from kobo to naira and rounding to 2 decimal places to match expected output
 FROM
     users_customuser uc
 LEFT JOIN

@@ -17,7 +17,7 @@ SELECT
     GREATEST(1, TIMESTAMPDIFF(MONTH, uc.date_joined, CURRENT_DATE())) AS tenure_months, -- Calculating tenure in full months, ensuring a minimum of 1 to avoid division by zero
     COALESCE(afs.total_transactions, 0) AS total_transactions, -- Total funded savings transactions (0 if none)
     -- Calculating Estimated CLV using the formula: CLV = (total_transactions / tenure) * 12 * avg_profit_per_transaction
-    ((COALESCE(afs.total_transaction_value_kobo, 0) / 100) / GREATEST(1, TIMESTAMPDIFF(MONTH, uc.date_joined, CURRENT_DATE()))) * 12 * 0.001 AS estimated_clv -- Converting kobo value to Naira before applying profit margin
+    ROUND(((COALESCE(afs.total_transaction_value_kobo, 0) / 100) / GREATEST(1, TIMESTAMPDIFF(MONTH, uc.date_joined, CURRENT_DATE()))) * 12 * 0.001, 2) AS estimated_clv -- Converting kobo value to Naira before applying profit margin and rounding to 2 decimal places to match expected output
 FROM
     users_customuser uc
 LEFT JOIN
